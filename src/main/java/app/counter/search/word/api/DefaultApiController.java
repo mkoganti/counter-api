@@ -3,7 +3,7 @@ package app.counter.search.word.api;
 import app.counter.search.word.exception.CounterApiTechnicalException;
 import app.counter.search.word.model.WordSearch;
 import app.counter.search.word.model.WordFrequency;
-import app.counter.search.word.service.SearchService;
+import app.counter.search.word.service.CounterService;
 import app.counter.search.word.util.Util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import java.util.Map;
 public class DefaultApiController {
 
   @Autowired
-  private SearchService searchService;
+  private CounterService counterService;
 
   @PostMapping("search")
   public ResponseEntity<WordFrequency> countOccurrenceOfWords(@RequestHeader final Map<String, Object> requestHeaders,
@@ -36,7 +36,7 @@ public class DefaultApiController {
 
     try {
 
-      return ResponseEntity.ok().body(searchService.countOccurrenceOfWords(wordSearch.getSearchKeyWords()));
+      return ResponseEntity.ok().body(counterService.countOccurrenceOfWords(wordSearch.getSearchKeyWords()));
 
     } catch (Exception exception) {
 
@@ -55,7 +55,7 @@ public class DefaultApiController {
 
     try {
 
-      return ResponseEntity.ok().body(searchService.getWordsWithMaximumOccurrences(Long.valueOf(topWordsCount)));
+      return ResponseEntity.ok().body(counterService.getWordsWithMaximumOccurrences(Long.valueOf(topWordsCount)));
 
     } catch (Exception exception) {
 

@@ -22,13 +22,13 @@ import static java.util.Arrays.stream;
 
 @Service
 @Slf4j
-public class SearchService {
+public class CounterService {
 
   public List<String> readFile() throws IOException {
     return Files.readAllLines(Paths.get("sample-paragraph.txt"));
   }
 
-  private Long getWordFrequency(List<String> linesInFile, String wordToFind) {
+  protected Long getWordFrequency(List<String> linesInFile, String wordToFind) {
     return linesInFile.stream().map(line -> stream(line.split("\\W+")).filter(word -> word.equalsIgnoreCase(wordToFind))
       .count()).collect(Collectors.summingLong(Long::longValue));
   }
