@@ -1,0 +1,10 @@
+server:
+  servlet:
+    context-path: /counter-api
+  port: 8081
+
+counter-api-users:
+  users:
+    - username: "optus"
+      password: "candidates"  #Ideally, sensitive-data should sit in ANSIBLE VAULT VARIABLES / GIT CI CD GLOBAL VARIABLES
+      role: "ROLE_USER"
